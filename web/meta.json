@@ -1,0 +1,317 @@
+{
+  "title": "Titanic Survival Predictor",
+  "subtitle": "Would you have survived the Titanic? Enter a passenger profile and the model estimates the chance of survival, learned from the real 1912 passenger list.",
+  "tags": [
+    "Classification",
+    "scikit-learn",
+    "Gradient Boosting",
+    "Feature engineering",
+    "Cross-validation",
+    "ONNX"
+  ],
+  "task": "classification",
+  "classes": [
+    0,
+    1
+  ],
+  "positive_class": 1,
+  "positive_is_good": true,
+  "output_label": "Estimated chance of survival",
+  "verdicts": [
+    "Unlikely to survive",
+    "Could go either way",
+    "Likely to survive"
+  ],
+  "thresholds": [
+    0.35,
+    0.65
+  ],
+  "result_note": "Try changing Sex, Ticket class or Title \u2014 \u201cwomen and children first\u201d shows up clearly.",
+  "features": [
+    {
+      "name": "Pclass",
+      "label": "Ticket class",
+      "type": "category",
+      "options": [
+        "1st",
+        "2nd",
+        "3rd"
+      ],
+      "default": "3rd"
+    },
+    {
+      "name": "Sex",
+      "label": "Sex",
+      "type": "category",
+      "options": [
+        "female",
+        "male"
+      ],
+      "default": "male"
+    },
+    {
+      "name": "Age",
+      "label": "Age",
+      "help": "years",
+      "type": "number",
+      "min": 0.42,
+      "max": 80.0,
+      "step": "any",
+      "default": 30.0
+    },
+    {
+      "name": "Fare",
+      "label": "Ticket fare",
+      "help": "\u00a3 in 1912 (\u2248 7\u201330 for 3rd class, 30\u2013500 for 1st)",
+      "type": "number",
+      "min": 0.0,
+      "max": 512.3292,
+      "step": "any",
+      "default": 14.4542
+    },
+    {
+      "name": "SibSp",
+      "label": "Siblings / spouses aboard",
+      "type": "number",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "name": "Parch",
+      "label": "Parents / children aboard",
+      "type": "number",
+      "min": 0.0,
+      "max": 6.0,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "name": "Embarked",
+      "label": "Port of embarkation",
+      "type": "category",
+      "options": [
+        "Cherbourg",
+        "Queenstown",
+        "Southampton"
+      ],
+      "default": "Southampton"
+    },
+    {
+      "name": "Title",
+      "label": "Title",
+      "type": "category",
+      "options": [
+        "Master",
+        "Miss",
+        "Mr",
+        "Mrs",
+        "Rare"
+      ],
+      "default": "Mr",
+      "labels": {
+        "Rare": "Other (Dr, Rev, Col, Lady, Sir\u2026)",
+        "Master": "Master (boy)",
+        "Miss": "Miss",
+        "Mrs": "Mrs",
+        "Mr": "Mr"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 30.0,
+      "Fare": 7.75,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Queenstown",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "1st",
+      "Sex": "male",
+      "Age": 45.0,
+      "Fare": 26.55,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Rare"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 18.0,
+      "Fare": 7.75,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 30.0,
+      "Fare": 7.225,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Cherbourg",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 20.0,
+      "Fare": 9.5,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "female",
+      "Age": 24.0,
+      "Fare": 15.85,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mrs"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 30.0,
+      "Fare": 16.1,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "1st",
+      "Sex": "male",
+      "Age": 37.0,
+      "Fare": 53.1,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "1st",
+      "Sex": "female",
+      "Age": 60.0,
+      "Fare": 75.25,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Embarked": "Cherbourg",
+      "Title": "Mrs"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 30.0,
+      "Fare": 7.8958,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "3rd",
+      "Sex": "male",
+      "Age": 25.0,
+      "Fare": 7.65,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Embarked": "Southampton",
+      "Title": "Mr"
+    },
+    {
+      "Pclass": "1st",
+      "Sex": "female",
+      "Age": 23.0,
+      "Fare": 263.0,
+      "SibSp": 3.0,
+      "Parch": 2.0,
+      "Embarked": "Southampton",
+      "Title": "Miss"
+    }
+  ],
+  "model_name": "Gradient Boosting",
+  "comparison": [
+    {
+      "model": "Gradient Boosting",
+      "ROC-AUC": 0.8882174100813075,
+      "F1": 0.7684906889413766,
+      "Accuracy": 0.8319117502216095
+    },
+    {
+      "model": "Random Forest",
+      "ROC-AUC": 0.881098669558701,
+      "F1": 0.7657281927934563,
+      "Accuracy": 0.8314718145704061
+    },
+    {
+      "model": "Logistic Regression",
+      "ROC-AUC": 0.8729682316019828,
+      "F1": 0.7623137391292034,
+      "Accuracy": 0.8225549098788535
+    }
+  ],
+  "test_metrics": {
+    "ROC-AUC": 0.8472990777338604,
+    "Accuracy": 0.8100558659217877,
+    "Precision": 0.7966101694915254,
+    "Recall": 0.6811594202898551,
+    "F1": 0.734375
+  },
+  "metric_formats": {
+    "Accuracy": "percent",
+    "Precision": "percent",
+    "Recall": "percent",
+    "F1": "percent"
+  },
+  "metrics_note": "Scores on a held-out test set of 179 passengers the model never saw during training.",
+  "figures": [
+    {
+      "src": "assets/survival_by_class_sex.png",
+      "caption": "Women and 1st-class passengers survived far more often."
+    },
+    {
+      "src": "assets/survival_by_family_size.png",
+      "caption": "Travelling alone or in a big family lowered the odds."
+    },
+    {
+      "src": "assets/feature_importance.png",
+      "caption": "What drives the prediction the most."
+    },
+    {
+      "src": "assets/roc_curve.png",
+      "caption": "ROC curve on the test set."
+    },
+    {
+      "src": "assets/confusion_matrix.png",
+      "caption": "Correct and wrong predictions on the test set."
+    }
+  ],
+  "steps": [
+    "Loaded 891 passengers and extracted the title (Mr, Mrs, Miss, Master, rare) from each name.",
+    "Filled missing ages with the median age of the same title, learned on the training split only.",
+    "Engineered family size, travelling-alone flag and log fare per person inside the pipeline (a custom transformer with its own ONNX converter, so the browser computes the same features).",
+    "Compared Logistic Regression, Random Forest and Gradient Boosting with 5\u00d73 repeated stratified CV.",
+    "Picked Gradient Boosting by ROC-AUC and evaluated it once on a held-out 20% test set.",
+    "Exported the whole pipeline to ONNX so it runs in the browser \u2014 no server needed."
+  ],
+  "dataset": {
+    "name": "Titanic passengers (Kaggle training set)",
+    "url": "https://www.kaggle.com/competitions/titanic/data",
+    "rows": 891
+  },
+  "repo_url": "https://github.com/ravshanovna-d/titanic-survival-predictor",
+  "notebook_url": "https://github.com/ravshanovna-d/titanic-survival-predictor/blob/main/notebook.ipynb",
+  "footer": "Built by <a href=\"https://github.com/ravshanovna-d\">ravshanovna-d</a>"
+}

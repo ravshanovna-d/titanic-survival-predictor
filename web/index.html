@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loading…</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow" id="eyebrow">Machine Learning Project</div>
+      <h1 id="title"></h1>
+      <p class="lead" id="lead"></p>
+      <div class="chips" id="chips"></div>
+      <div class="links" id="links"></div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Try the model</h2>
+        <p class="sub" id="form-sub">Fill in the fields and press Predict. The model runs entirely in your browser.</p>
+        <form class="fields" id="form"></form>
+        <div class="actions">
+          <button class="btn primary" id="predict" type="button">Predict</button>
+          <button class="btn" id="example" type="button">Random example</button>
+          <button class="btn" id="reset" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section class="card result">
+        <h2 id="result-title">Prediction</h2>
+        <div id="result"><div class="placeholder">Loading model…</div></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>How well does it work?</h2>
+      <p class="sub" id="metrics-sub">Scores on a held-out test set the model never saw during training.</p>
+      <div class="metrics" id="metrics"></div>
+    </section>
+
+    <section class="card" id="compare-card">
+      <h2>Models compared</h2>
+      <p class="sub">Several algorithms were trained with the same preprocessing and compared with cross-validation on the training set. The best one powers this demo.</p>
+      <table id="compare"></table>
+    </section>
+
+    <section class="card" id="figs-card">
+      <h2>Inside the model</h2>
+      <p class="sub">Charts produced by the training notebook.</p>
+      <div class="figs" id="figs"></div>
+    </section>
+
+    <section class="card">
+      <h2>What I did</h2>
+      <ul class="steps" id="steps"></ul>
+    </section>
+
+    <footer id="footer"></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
