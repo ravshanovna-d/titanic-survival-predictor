@@ -2,7 +2,7 @@
 
 Would you have survived the Titanic? Enter a passenger profile and a model trained on the real 1912 passenger list estimates the chance of survival.
 
-**[Live demo →](LIVE_DEMO_URL)** — pick a class, sex, age, fare, family aboard, port and title, and get a survival probability instantly. The model runs in your browser (ONNX Runtime Web), no server needed.
+**[Live demo →](https://ravshanovna-titanic.vercel.app)** — pick a class, sex, age, fare, family aboard, port and title, and get a survival probability instantly. The model runs in your browser (ONNX Runtime Web), no server needed.
 
 ![Survival by class and sex](web/assets/survival_by_class_sex.png)
 
